@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet"> 
     <title>Document</title>
 </head>
 <body>
@@ -18,8 +23,10 @@
             <input type="text" name="author" id="author">
             <label for="pages">Pages</label>
             <input type="number" name="pages" id="pages" step="1" min="1">
-            <label for="completed"></label>
+            <label for="completed">Completed</label>
             <input type="checkbox" name="completed" id="completed">
+            <span class="slider-round"></span>
+            <button type="submit">Save</button>
         </form>
     </div>
     <main></main>

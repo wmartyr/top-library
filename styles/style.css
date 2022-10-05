@@ -1,0 +1,60 @@
+* {
+    outline: dashed 1px gray;
+}
+
+/*
+colors
+#E63333
+#252525
+#363636
+#E6E6E6
+
+#CAEBF2
+#A9A9A9
+#FF3B3F
+#EFEFEF
+*/
+
+:root {
+    --color-main-light: #FDFCE9;
+    --color-header-background: var(--color-main-light);
+    --color-main-background: #286181;
+    --color-input-background: var(--color-main-light);
+    --color-card-background: var(--color-main-light);
+    --color-highlight: #05ABC4;
+    --color-toggle: #919191;
+    --color-toggle-background: #494D50;
+    --color-font-dark: #252525;
+    --color-font-light: #494D50;
+}
+
+body {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 10vh 1fr;
+    font-family: 'Raleway', sans-serif;
+}
+
+header {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    background-color: var(--color-header-background);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+h1 {
+    color: var(--color-font-dark);
+}
+
+.sidebar {
+    grid-column: 1;
+    background-color: var(--color-main-background);
+}
+
+main {
+    grid-column: 2 / -1;
+    background-color: var(--color-main-background);
+}
