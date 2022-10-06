@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,29 +8,33 @@
     <link rel="stylesheet" href="./styles/reset.css">
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
+
 <body>
     <header>
         <h1>LIBRARY</h1>
     </header>
     <div class="sidebar">
         <form action="#" method="post">
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title">
-            <label for="author">Author</label>
-            <input type="text" name="author" id="author">
-            <label for="pages">Pages</label>
-            <input type="number" name="pages" id="pages" step="1" min="1">
-            <label for="completed">Completed</label>
-            <input type="checkbox" name="completed" id="completed">
-            <span class="slider-round"></span>
-            <button type="submit">Save</button>
+            <label for="title" class="full-width">Title</label>
+            <input type="text" name="title" id="title" class="full-width input-style">
+            <label for="author" class="full-width">Author</label>
+            <input type="text" name="author" id="author" class="full-width input-style">
+            <label for="pages" class="full-width">Pages</label>
+            <input type="number" name="pages" id="pages" step="1" min="1" class="full-width input-style">
+            <label class="completed-button">Completed</label>
+            <label for="completed" class="switch">
+                <input type="checkbox" name="completed" id="completed">
+                <span class="slider-round"></span>
+            </label>
+            <button type="submit" class="full-width">SAVE</button>
         </form>
     </div>
     <main></main>
-    
+
 </body>
+
 </html>
