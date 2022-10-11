@@ -1,5 +1,7 @@
+
 let myLibrary = [];
-let book;
+let book = new Book();
+
 const title = document.querySelector("#title");
 const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
@@ -12,19 +14,19 @@ function Book(title, author, pages, isCompleted) {
     this.pages = pages;
     this.isCompleted = isCompleted;
 
-    this.getTitle = function() {
+    this.getTitle = function () {
         return title;
     }
 
-    this.getAuthor = function() {
+    this.getAuthor = function () {
         return author;
     }
 
-    this.getPages = function() {
+    this.getPages = function () {
         return pages;
     }
 
-    this.getIsCompleted = function() {
+    this.getIsCompleted = function () {
         return isCompleted;
     }
 
@@ -39,14 +41,10 @@ function Book(title, author, pages, isCompleted) {
 
 function addBookToLibrary() {
     // get info from form and create new Book object
-    // console.log(title.value);
-    // console.log(author.value);
-    // console.log(pages.value);
-    // console.log(completed.checked);
     book = new Book(title.value, author.value, pages.value, completed.checked);
     // add object to myLibrary
     myLibrary.push(book);
-    // console.log(myLibrary);
+    alert(myLibrary.length);
     // create card and add to DOM
 }
 
@@ -55,16 +53,9 @@ function removeBookFromLibrary() {
     // remove object from myLibrary
 }
 
-saveButton.addEventListener("click", function() {
-    alert("Run function");
-    // alert(title.value);
-    // alert(author.value);
-    // alert(pages.value);
-    // alert(completed.checked);
-    book = new Book(title.value, author.value, pages.value, completed.checked);
-    // alert(book.getTitle());
-    // alert(book.getAuthor());
-    // alert(book);
-    myLibrary.push(book);
-    alert(myLibrary);
+saveButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    addBookToLibrary();
 });
+
+
