@@ -7,6 +7,7 @@ const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
 const completed = document.querySelector("#completed");
 const saveButton = document.querySelector("#save-button");
+const main = document.querySelector("main");
 
 function Book(title, author, pages, isCompleted) {
     this.title = title;
@@ -46,11 +47,22 @@ function addBookToLibrary() {
     myLibrary.push(book);
     alert(myLibrary.length);
     // create card and add to DOM
+    createCard(book);
 }
 
 function removeBookFromLibrary() {
     // remove card from DOM
     // remove object from myLibrary
+}
+
+function createCard (book) {
+    const cardDiv = document.createElement("div");
+    cardDiv.classList.add("card");
+    const p1 = document.createElement("p");
+    p1.classList.add("card-subheader");
+    p1.textContent = "Title:";
+    cardDiv.append(p1);
+    main.appendChild(cardDiv);
 }
 
 saveButton.addEventListener("click", (event) => {
