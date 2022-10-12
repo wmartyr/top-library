@@ -9,6 +9,13 @@ const completed = document.querySelector("#completed");
 const saveButton = document.querySelector("#save-button");
 const main = document.querySelector("main");
 
+function EraseInput() {
+    title.value = "";
+    author.value = "";
+    pages.value = "";
+    completed.checked = false;
+}
+
 function Book(title, author, pages, isCompleted) {
     this.title = title;
     this.author = author;
@@ -43,9 +50,9 @@ function Book(title, author, pages, isCompleted) {
 function addBookToLibrary() {
     // get info from form and create new Book object
     book = new Book(title.value, author.value, pages.value, completed.checked);
+    console.log(book.info());
     // add object to myLibrary
     myLibrary.push(book);
-    alert(myLibrary.length);
     // create card and add to DOM
     createCard(book);
 }
@@ -62,12 +69,43 @@ function createCard (book) {
     p1.classList.add("card-subheader");
     p1.textContent = "Title:";
     cardDiv.append(p1);
+    const p2 = document.createElement("p");
+    p2.classList.add("title", "book-data");
+    p2.textContent = book.getTitle();
+    cardDiv.append(p2);
+    const p3 = document.createElement("p");
+    p3.classList.add("card-subheader");
+    p3.textContent = "Author:";
+    cardDiv.append(p3);
+    const p4 = document.createElement("p");
+    p4.classList.add("author", "book-data");
+    p4.textContent = book.getAuthor();
+    cardDiv.append(p4);
+    const p5 = document.createElement("p");
+    p5.classList.add("card-subheader");
+    p5.textContent = "Pages:";
+    cardDiv.append(p5);
+    const p6 = document.createElement("p");
+    p6.classList.add("pages", "book-data");
+    p6.textContent = book.getPages();
+    cardDiv.append(p6);
+    const completedText = document.createElement("span");
+    completedText.classList.add("status");
+    completedText.textContent = book.getIsCompleted() ? "Completed" : "Not Completed";
+    cardDiv.append(completedText);
+    const trashImg = document.createElement("img");
+    trashImg.src = "./images/trash-can-outline.png";
+    trashImg.alt = "Delete icon";
+    cardDiv.append(trashImg);
     main.appendChild(cardDiv);
 }
+
+EraseInput();
 
 saveButton.addEventListener("click", (event) => {
     event.preventDefault();
     addBookToLibrary();
+    EraseInput();
 });
 
 
