@@ -44,6 +44,15 @@ function Book(bookID, title, author, pages, isCompleted) {
         return isCompleted;
     }
 
+    this.toggleCompleted = function () {
+        if (isCompleted) {
+            isCompleted = false;
+        } else {
+            isCompleted = true;
+        }
+        alert(`completed is ${isCompleted}`);
+    }
+
     this.info = function () {
         if (isCompleted) {
             return `${title} by ${author}, ${pages} pages, read book.`;
@@ -68,38 +77,61 @@ function removeBookFromList(id) {
     myLibrary.splice(objectIndex, 1);
 }
 
+function toggleBookStatusFromList(id) {
+    var objectIndex = myLibrary.findIndex((bk) => bk.bookID == id);
+    if (myLibrary[objectIndex].isCompleted) {
+        myLibrary[objectIndex].isCompleted = false;
+    } else {
+        myLibrary[objectIndex].isCompleted = true;
+    }
+}
+
 function createCard(book) {
+    const cardId = book.getId();
+
     const cardDiv = document.createElement("div");
     cardDiv.classList.add("card");
-    const cardId = book.getId();
+
     const p1 = document.createElement("p");
     p1.classList.add("card-subheader");
     p1.textContent = "Title:";
     cardDiv.append(p1);
+
     const p2 = document.createElement("p");
     p2.classList.add("title", "book-data");
     p2.textContent = book.getTitle();
     cardDiv.append(p2);
+
     const p3 = document.createElement("p");
     p3.classList.add("card-subheader");
     p3.textContent = "Author:";
     cardDiv.append(p3);
+
     const p4 = document.createElement("p");
     p4.classList.add("author", "book-data");
     p4.textContent = book.getAuthor();
     cardDiv.append(p4);
+
     const p5 = document.createElement("p");
     p5.classList.add("card-subheader");
     p5.textContent = "Pages:";
     cardDiv.append(p5);
+
     const p6 = document.createElement("p");
     p6.classList.add("pages", "book-data");
     p6.textContent = book.getPages();
     cardDiv.append(p6);
-    const completedText = document.createElement("span");
-    completedText.classList.add("status");
+
+    const completedText = document.createElement("button");
+    completedText.classList.add("status-button");
     completedText.textContent = book.getIsCompleted() ? "Completed" : "Not Completed";
+    completedText.onclick = function () {
+        toggleBookStatusFromList(cardId);
+        book.toggleCompleted();
+        completedText.textContent = book.getIsCompleted() ? "Completed" : "Not Completed";
+    }
     cardDiv.append(completedText);
+
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("delete-button");
     deleteButton.onclick = function () {
@@ -107,6 +139,7 @@ function createCard(book) {
         removeBookFromList(cardId);
     }
     cardDiv.append(deleteButton);
+
     main.appendChild(cardDiv);
 }
 

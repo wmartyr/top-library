@@ -178,8 +178,22 @@ main {
     color: var(--color-font-dark);
 }
 
-.status {
+.status-button {
     grid-column: 1;
+    display: inline-block;
+    padding: 0, 5px;
+    margin: 0;
+    border: none;
+    cursor: pointer;
+    background-color: var(--color-main-light);
+    text-align: left;
+    width: fit-content;
+    border-radius: 5px;
+}
+
+.status-button:hover {
+    background-color: var(--color-highlight);
+    color: var(--color-main-light);
 }
 
 div img {
@@ -188,11 +202,18 @@ div img {
 
 .delete-button {
     display: inline-block;
-    background: url(../images/trash-can-outline.png) no-repeat center;
+    background: url(../images/trash-can-outline-black.png) no-repeat center;
     padding: 0;
     margin: 0;
     border: none;
     cursor: pointer;
+    border-radius: 5px;
+}
+
+.delete-button:hover {
+    background: url(../images/trash-can-outline-white.png) no-repeat center;
+    background-color: var(--color-highlight);
+
 }
 
 
