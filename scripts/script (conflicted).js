@@ -9,6 +9,7 @@ const pages = document.querySelector("#pages");
 const completed = document.querySelector("#completed");
 const saveButton = document.querySelector("#save-button");
 const main = document.querySelector("main");
+// const trashButtons = document.querySelectorAll("#trashImg");
 
 function EraseInput() {
     title.value = "";
@@ -63,15 +64,18 @@ function addBookToLibrary() {
     createCard(book);
 }
 
-function removeBookFromList(id) {
-    var objectIndex = myLibrary.findIndex((bk) => bk.bookID == id);
-    myLibrary.splice(objectIndex, 1);
+function removeBookFromLibrary(id) {
+    console.log("Run Remove Function");
+    alert(`Run Remove Function for id ${id}`);
+    // remove card from DOM
+    // remove object from myLibrary
 }
 
 function createCard(book) {
     const cardDiv = document.createElement("div");
     cardDiv.classList.add("card");
     const cardId = book.getId();
+    cardDiv.setAttribute("id", `card${cardId}`);
     const p1 = document.createElement("p");
     p1.classList.add("card-subheader");
     p1.textContent = "Title:";
@@ -102,10 +106,6 @@ function createCard(book) {
     cardDiv.append(completedText);
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("delete-button");
-    deleteButton.onclick = function () {
-        main.removeChild(cardDiv);
-        removeBookFromList(cardId);
-    }
     cardDiv.append(deleteButton);
     main.appendChild(cardDiv);
 }
@@ -117,3 +117,16 @@ saveButton.addEventListener("click", (event) => {
     addBookToLibrary();
     EraseInput();
 });
+
+const deleteButtons = document.querySelectorAll("".delete-button")
+// trashButtons.forEach((trashButton) => {
+//     trashButton.addEventListener("click", (event) => {
+//         event.preventDefault();
+//         // console.log(id.value);
+//         // alert(.card.div.value);
+//         alert("Button Clicked");
+//     });
+// });
+
+
+
