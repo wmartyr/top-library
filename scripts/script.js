@@ -1,7 +1,6 @@
 
 let myLibrary = [];
 let book = new Book();
-let bookCounter = 0;
 
 const title = document.querySelector("#title");
 const author = document.querySelector("#author");
@@ -17,8 +16,7 @@ function EraseInput() {
     completed.checked = false;
 }
 
-function Book(bookID, title, author, pages, isCompleted) {
-    this.bookID = bookID;
+function Book(title, author, pages, isCompleted) {
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -53,41 +51,46 @@ function Book(bookID, title, author, pages, isCompleted) {
         alert(`completed is ${isCompleted}`);
     }
 
-    this.info = function () {
+    this.getInfo = function () {
         if (isCompleted) {
             return `${title} by ${author}, ${pages} pages, read book.`;
         } else {
             return `${title} by ${author}, ${pages} pages, not read yet.`;
         }
     }
+
 }
 
 function addBookToLibrary() {
     // get info from form and create new Book object
-    book = new Book(++bookCounter, title.value, author.value, pages.value, completed.checked);
-    console.log(book.info());
+    book = new Book(title.value, author.value, pages.value, completed.checked);
     // add object to myLibrary
     myLibrary.push(book);
     // create card and add to DOM
     createCard(book);
 }
 
-function removeBookFromList(id) {
-    var objectIndex = myLibrary.findIndex((bk) => bk.bookID == id);
+// function removeBookFromList(id) {
+//     var objectIndex = myLibrary.findIndex((bk) => bk.bookID == id);
+//     myLibrary.splice(objectIndex, 1);
+// }
+
+function removeBookFromList(info) {
+    var objectIndex = myLibrary.findIndex((bk) => bk.getInfo() === info);
     myLibrary.splice(objectIndex, 1);
 }
 
-function toggleBookStatusFromList(id) {
-    var objectIndex = myLibrary.findIndex((bk) => bk.bookID == id);
+function toggleBookStatusFromList(info) {
+    var objectIndex = myLibrary.findIndex((bk) => bk.getInfo() === info);
     if (myLibrary[objectIndex].isCompleted) {
         myLibrary[objectIndex].isCompleted = false;
     } else {
         myLibrary[objectIndex].isCompleted = true;
     }
+    return myLibrary[objectIndex].isCompleted;
 }
 
 function createCard(book) {
-    const cardId = book.getId();
 
     const cardDiv = document.createElement("div");
     cardDiv.classList.add("card");
@@ -126,9 +129,8 @@ function createCard(book) {
     completedText.classList.add("status-button");
     completedText.textContent = book.getIsCompleted() ? "Completed" : "Not Completed";
     completedText.onclick = function () {
-        toggleBookStatusFromList(cardId);
-        book.toggleCompleted();
-        completedText.textContent = book.getIsCompleted() ? "Completed" : "Not Completed";
+        var newCompletedStatus = toggleBookStatusFromList(book.getInfo());
+        completedText.textContent = newCompletedStatus ? "Completed" : "Not Completed";
     }
     cardDiv.append(completedText);
 
@@ -136,7 +138,7 @@ function createCard(book) {
     deleteButton.classList.add("delete-button");
     deleteButton.onclick = function () {
         main.removeChild(cardDiv);
-        removeBookFromList(cardId);
+        removeBookFromList(book.getInfo());
     }
     cardDiv.append(deleteButton);
 
