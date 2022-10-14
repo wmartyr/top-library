@@ -9,6 +9,7 @@ const completed = document.querySelector("#completed");
 const saveButton = document.querySelector("#save-button");
 const main = document.querySelector("main");
 
+// function to clear the text fields
 function EraseInput() {
     title.value = "";
     author.value = "";
@@ -21,10 +22,6 @@ function Book(title, author, pages, isCompleted) {
     this.author = author;
     this.pages = pages;
     this.isCompleted = isCompleted;
-
-    this.getId = function () {
-        return bookID;
-    }
 
     this.getTitle = function () {
         return title;
@@ -70,16 +67,12 @@ function addBookToLibrary() {
     createCard(book);
 }
 
-// function removeBookFromList(id) {
-//     var objectIndex = myLibrary.findIndex((bk) => bk.bookID == id);
-//     myLibrary.splice(objectIndex, 1);
-// }
-
 function removeBookFromList(info) {
     var objectIndex = myLibrary.findIndex((bk) => bk.getInfo() === info);
     myLibrary.splice(objectIndex, 1);
 }
 
+// function to toggle if book is completed or not
 function toggleBookStatusFromList(info) {
     var objectIndex = myLibrary.findIndex((bk) => bk.getInfo() === info);
     if (myLibrary[objectIndex].isCompleted) {
