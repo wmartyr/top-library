@@ -1,7 +1,3 @@
-
-let myLibrary = [];
-let book = new Book();
-
 const title = document.querySelector("#title");
 const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
@@ -9,53 +5,54 @@ const completed = document.querySelector("#completed");
 const saveButton = document.querySelector("#save-button");
 const main = document.querySelector("main");
 
+class Book {
+    constructor(title, author, pages, isCompleted) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.isCompleted = isCompleted;
+    }
+
+    getTitle() {
+        return this.title;
+    }
+
+    getAuthor() {
+        return this.author;
+    }
+
+    getPages() {
+        return this.pages;
+    }
+
+    getIsCompleted() {
+        return this.isCompleted;
+    }
+
+    toggleCompleted() {
+        if (this.isCompleted) {
+            this.isCompleted = false;
+        } else {
+            this.isCompleted = true;
+        }
+        alert(`completed is ${this.isCompleted}`);
+    }
+
+    getInfo() {
+        if (this.isCompleted) {
+            return `${this.title} by ${this.author}, ${this.pages} pages, read book.`;
+        } else {
+            return `${this.title} by ${this.author}, ${this.pages} pages, not read yet.`;
+        }
+    }
+}
+
 // function to clear the text fields
 function EraseInput() {
     title.value = "";
     author.value = "";
     pages.value = "";
     completed.checked = false;
-}
-
-function Book(title, author, pages, isCompleted) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isCompleted = isCompleted;
-
-    this.getTitle = function () {
-        return title;
-    }
-
-    this.getAuthor = function () {
-        return author;
-    }
-
-    this.getPages = function () {
-        return pages;
-    }
-
-    this.getIsCompleted = function () {
-        return isCompleted;
-    }
-
-    this.toggleCompleted = function () {
-        if (isCompleted) {
-            isCompleted = false;
-        } else {
-            isCompleted = true;
-        }
-        alert(`completed is ${isCompleted}`);
-    }
-
-    this.getInfo = function () {
-        if (isCompleted) {
-            return `${title} by ${author}, ${pages} pages, read book.`;
-        } else {
-            return `${title} by ${author}, ${pages} pages, not read yet.`;
-        }
-    }
-
 }
 
 function addBookToLibrary() {
@@ -84,7 +81,6 @@ function toggleBookStatusFromList(info) {
 }
 
 function createCard(book) {
-
     const cardDiv = document.createElement("div");
     cardDiv.classList.add("card");
 
@@ -137,6 +133,9 @@ function createCard(book) {
 
     main.appendChild(cardDiv);
 }
+
+let myLibrary = [];
+let book = new Book();
 
 EraseInput();
 
